@@ -1,2 +1,2 @@
 <?php
-    echo "This is a book";
+    echo "This is a book, OK";
