@@ -27,5 +27,5 @@ switch($event['message']['type']) {
     } 
   }
 $response=$bot->replyMessage($replyToken, $textMessageBuilder); 
-break;
+
 echo "OK";
