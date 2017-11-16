@@ -10,23 +10,22 @@ $channel_secret = 'f60131c3b22cf492ec86acd0f7eeb0e2';
 
 //Get message from Line API
 $content = file_get_contents('php://input');
+$events=json_decode($content, true);
 
-// แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
-$events = json_decode($content, true);
-if(!is_null($events)){
-    // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
-    $replyToken = $events['events'][0]['replyToken'];
-}
-// ส่วนของคำสั่งจัดเตียมรูปแบบข้อความสำหรับส่ง
-$textMessageBuilder = new TextMessageBuilder(json_encode($events));
- 
-//l ส่วนของคำสั่งตอบกลับข้อความ
-$response = $bot->replyMessage($replyToken,$textMessageBuilder);
-if ($response->isSucceeded()) {
-    echo 'Succeeded!';
-    return;
-}
- 
-// Failed
-echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
-?>
+if (!is_null($events['events'])) {
+//Loop through each event foreach($events['events']as $event){
+// Line API send a lot of event type, we interested in message only. if ($event['type'] == 'message') {
+switch($event['message']['type']) {
+    case 'text':
+//Get replyToken
+        $replyToken = $event['replyToken']; //Reply message
+        $respMessage='Hello, your message is '.$event['message']['text'];
+        $httpClient=newCurlHTTPClient($channel_token); $bot=newLINEBot($httpClient,array('channelSecret'=> $channel_secret)); 
+        $textMessageBuilder=newTextMessageBuilder($respMessage);
+        
+        break;
+    } 
+  }
+$response=$bot->replyMessage($replyToken, $textMessageBuilder); 
+break;
+echo "OK";
