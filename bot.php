@@ -22,7 +22,20 @@ if (!is_null($events['events'])) {
                 case 'text':
                     //Get replyToken
                     $replyToken = $event['replyToken']; //Reply message
-                    $respMessage='Hello, your message is '.$event['message']['text'];
+                    if($event['message']['text']=='กะแป๋ง'){
+                        $respMessage='พ่อแอลลี่ '.$event['message']['text'];   
+                    }else if($event['message']['text']=='กะแป๋ง'){
+                        $respMessage='พ่อเสือน้อย '.$event['message']['text'];
+                    }else if($event['message']['text']=='ผศ'){
+                        $respMessage='พ่อภูพุ '.$event['message']['text'];
+                    }else if($event['message']['text']=='เสี่ยโอ๋'){
+                        $respMessage='พ่อนารา '.$event['message']['text'];
+                    }else if($event['message']['text']=='ตี๋น้อย'){
+                        $respMessage='ซินแสเมืองหนองกี่ '.$event['message']['text'];
+                    }else{
+                        $respMessage='สุดยอดคุณพ่ออยู่นี่แหละ';
+                    }
+                    
                     $httpClient=new CurlHTTPClient($channel_token); 
                     $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); $textMessageBuilder=new TextMessageBuilder($respMessage);
                     $response = $bot->replyMessage($replyToken, $textMessageBuilder);
