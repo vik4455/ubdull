@@ -17,7 +17,7 @@ if (!is_null($events['events'])) {
         switch($event['message']['type']) {
         case 'text'
             //Get replyToken
-            $replyToken = $event['replyToken'];
+            //$replyToken = $event['replyToken'];
             // Reply message
             $respMessage = 'Hello, your message is '. $event['message']['text'];
             $httpClient = new CurlHTTPClient($channel_token);
