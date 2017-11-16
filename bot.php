@@ -14,7 +14,7 @@ if (!is_null($events['events'])) {
 //Loop through each event 
     foreach($events['events'] as $event){
     if ($event['type'] == 'message') { 
-    switch($event['message']['type']) {
+        switch($event['message']['type']) {
         case 'text'
             //Get replyToken
             $replyToken = $event['replyToken'];
