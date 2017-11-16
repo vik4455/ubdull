@@ -6,8 +6,10 @@ $channel_secret = 'f60131c3b22cf492ec86acd0f7eeb0e2';
 
 $content = file_get_contents('php://input'); 
 $events = json_decode($content, true);
-
-if ($event['type'] == 'message') { 
+if (!is_null($events['events'])) {
+//Loop through each event 
+    foreach($events['events']as $event){
+    if ($event['type'] == 'message') { 
     switch($event['message']['type']) {
         case 'text'
             // Get replyToken
@@ -20,5 +22,9 @@ if ($event['type'] == 'message') {
             $textMessageBuilder = new TextMessageBuilder($respMessage); 
             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         break;
+        } 
+    }
     }
 }
+
+echo "OK";
