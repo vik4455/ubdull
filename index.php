@@ -20,7 +20,8 @@ switch($event['message']['type']) {
 //Get replyToken
         $replyToken = $event['replyToken']; //Reply message
         $respMessage='Hello, your message is '.$event['message']['text'];
-        $httpClient=newCurlHTTPClient($channel_token); $bot=newLINEBot($httpClient,array('channelSecret'=> $channel_secret)); 
+        $httpClient=newCurlHTTPClient($channel_token); 
+        $bot=newLINEBot($httpClient,array('channelSecret'=> $channel_secret)); 
         $textMessageBuilder=newTextMessageBuilder($respMessage);
         
         break;
