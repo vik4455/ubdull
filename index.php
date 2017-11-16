@@ -16,14 +16,13 @@ if (!is_null($events['events'])) {
 //Loop through each event foreach($events['events']as $event){
 // Line API send a lot of event type, we interested in message only. if ($event['type'] == 'message') {
 switch($event['message']['type']) {
-case 'text':
+    case 'text':
 //Get replyToken
-$replyToken = $event['replyToken']; //Reply message
-$respMessage='Hello, your message is '.$event['message']['text'];
-$httpClient=newCurlHTTPClient($channel_token); $bot=newLINEBot($httpClient, array('channelSecret'=> $channel_secret)); $textMessageBuilder=newTextMessageBuilder($respMessage);
-} 
-}
-} 
-}
+        $replyToken = $event['replyToken']; //Reply message
+        $respMessage='Hello, your message is '.$event['message']['text'];
+        $httpClient=newCurlHTTPClient($channel_token); $bot=newLINEBot($httpClient, array('channelSecret'=> $channel_secret)); 
+        $textMessageBuilder=newTextMessageBuilder($respMessage);
+    } 
+  }
 $response=$bot->replyMessage($replyToken, $textMessageBuilder); break;
 echo "OK";
