@@ -32,6 +32,8 @@ if (!is_null($events['events'])) {
                         $respMessage='พ่อนารา '.$event['message']['text'];
                     }else if($event['message']['text']=='ตี๋น้อย'){
                         $respMessage='ซินแสเมืองหนองกี่ '.$event['message']['text'];
+                    }else if($event['message']['text']=='แสงเดือน'){
+                        $respMessage='คุณเมียที่รักและเคารพ '.$event['message']['text'];
                     }else{
                         $respMessage='สุดยอดคุณพ่ออยู่นี่แหละ';
                     }
