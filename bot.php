@@ -34,8 +34,6 @@ if (!is_null($events['events'])) {
                         $respMessage='ค่าตับสูงมากฮะ ตับๆ ตับๆ ตับๆๆๆ';
                     }else if($event['message']['text']=='ผอ แมว'){
                         $respMessage='อย่าให้พูดถึงเลยครับ';
-                    }else if($event['message']['text']=='ทีละคน นะ สัส'){
-                        $respMessage='เออ ใช่ กุรุ่นทดลองครับ !!!';
                     }else if($event['message']['text']=='ไปราชการ'){
                         $respMessage='แปลว่าไปตีหม้อ กับเสือดำ';
                     }else if(strpos($event['message']['text'], 'สัส') !== false){
@@ -48,6 +46,8 @@ if (!is_null($events['events'])) {
                         $respMessage='ไม่รู้ฮะ อย่าไปพูดถึงเค้าเลย';
                     }else if(strpos($event['message']['text'], 'ทีเด็ด')){
                         $respMessage='พูดถึงทำไม จะไปหย่มหรา';
+                    }else if(strpos($event['message']['text'], 'กาก')){
+                        $respMessage='มึงสิกาก';
                     }
                     
                     break;
