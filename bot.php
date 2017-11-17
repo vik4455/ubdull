@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
                     }else if($event['message']['text']=='hispeed'){
                         $respMessage='น่าจะสาปสูญไปแล้ว';
                     }else if($event['message']['text']=='เสือดำ'){
-                        $respMessage='จุ๊ๆ โส่ยอยู่ ให้เมียเผลอก่อน';
+                        $respMessage='เพื่อนรัก ผศ ครับ เสาร์นี้อ่างทองระเบิดแน่นวล';
                     }else if($event['message']['text']=='ผศ'){
                         $respMessage='ค่าตับสูงมากฮะ ตับๆ ตับๆ ตับๆๆๆ';
                     }else if($event['message']['text']=='ผอ แมว'){
