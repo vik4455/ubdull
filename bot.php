@@ -54,10 +54,6 @@ IP66 Waterproof Standard IR LED: 36PCS IR LED, 30Meter IR Distance';
                         $respMessage='ทำไมพูดไม่ไพเราะเลยครับ ที่บ้านไม่สั่งสอนเหรอ';
                     }else if(strpos($event['message']['text'], 'เชี่ย') !== false){
                         $respMessage='นาทีนี้ ผศ คนเดียวเลยฮะ ด่าแต่กรู';
-                    }else if(strpos($event['message']['text'], 'ราชการ') !== false){
-                        $respMessage='มันก็แค่ข้ออ้างบังหน้าครับ';
-                    }else if($event['message']['text']=='ไปราชการ') !== false){
-                        $respMessage='แปลว่าไปตีหม้อ';
                     }
                     break;
             }
