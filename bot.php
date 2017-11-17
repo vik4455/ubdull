@@ -22,15 +22,17 @@ if (!is_null($events['events'])) {
                 case 'text':
                     //Get replyToken
                     $replyToken = $event['replyToken']; //Reply message
-                    if($event['message']['text']=='กะแป๋ง'){
-                        $respMessage='พ่อแอลลี่ '.$event['message']['text'];   
-                    }else if($event['message']['text']=='กะแป๋ง'){
-                        $respMessage='พ่อเสือน้อย '.$event['message']['text'];
-                    }else if($event['message']['text']=='ผศ'){
+                    if($event['message']['text']=='ติดกล้อง'){
+                        $respMessage='ต้องร้าน Hi-Speed Net เลยมีให้เลือกหลายรุ่น สอบถามราคาแต่ละรุ่นเพียงพิมพ์ "1MP" "2MP" "3MP" "4MP" ก็ได้รู้ราคากันแล้ว';   
+                    }else if($event['message']['text']=='1MP'){
+                        $respMessage='HP-IPCH13-VR01 / ราคา 2,300 บาท / <br>- HD Remote View by PC and Smart Phone.<br>
+- Wireless Connection Router<br>
+- 360 Degree Full View Camera';
+                    }else if($event['message']['text']=='2MP'){
                         $respMessage='พ่อภูพุ '.$event['message']['text'];
-                    }else if($event['message']['text']=='เสี่ยโอ๋'){
+                    }else if($event['message']['text']=='3MP'){
                         $respMessage='พ่อนารา '.$event['message']['text'];
-                    }else if($event['message']['text']=='ตี๋น้อย'){
+                    }else if($event['message']['text']=='4MP'){
                         $respMessage='ซินแสเมืองหนองกี่ '.$event['message']['text'];
                     }else if($event['message']['text']=='แสงเดือน'){
                         $respMessage='คุณเมียที่รักและเคารพ '.$event['message']['text'];
