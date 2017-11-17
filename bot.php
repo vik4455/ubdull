@@ -39,7 +39,7 @@ if (!is_null($events['events'])) {
                     }else if($event['message']['text']=='ทีละคน นะ สัส'){
                         $respMessage='เออ ใช่ กุรุ่นทดลองครับ !!!';
                     }else if($event['message']['text']=='ไปราชการ'){
-                        $respMessage='แปลว่าไปตีหม้อ';
+                        $respMessage='แปลว่าไปตีหม้อ กับเสือดำ';
                     }else if(strpos($event['message']['text'], 'สัส') !== false){
                         $respMessage='ทำไมพูดไม่ไพเราะเลยครับ ที่บ้านไม่สั่งสอนเหรอ';
                     }else if(strpos($event['message']['text'], 'เชี่ย') !== false){
