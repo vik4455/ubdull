@@ -23,29 +23,13 @@ if (!is_null($events['events'])) {
                     //Get replyToken
                     $replyToken = $event['replyToken']; //Reply message
                     if($event['message']['text']=='ubdull'){
-                        $respMessage='ถามเอาที่กุจะพอรู้นะ สัส !!!';   
-                    }else if($event['message']['text']=='CGX'){
-                        $respMessage='อย่าให้พูดถึงเลยครับ องค์กรเหี้ยๆแบบนั้น';
-                    }else if($event['message']['text']=='สกค'){
-                        $respMessage='น่าจะสาปสูญไปแล้ว';
-                    }else if($event['message']['text']=='hispeed'){
-                        $respMessage='น่าจะสาปสูญไปแล้ว';
-                    }else if($event['message']['text']=='ผศ'){
-                        $respMessage='ค่าตับสูงมากฮะ ตับๆ ตับๆ ตับๆๆๆ';
-                    }else if($event['message']['text']=='ผอ แมว'){
-                        $respMessage='อย่าให้พูดถึงเลยครับ';
-                    }else if($event['message']['text']=='ไปราชการ'){
-                        $respMessage='แปลว่าไปตีหม้อ กับเสือดำ';
-                    }else if(strpos($event['message']['text'], 'เชี่ย') !== false){
-                        $respMessage='นาทีนี้ ผศ คนเดียวเลยฮะ ด่าแต่กรู';
-                    }else if(strpos($event['message']['text'], 'ราชการ') !== false){
-                        $respMessage='มันก็แค่ข้ออ้าง รึเปล่าวะ ?';
-                    }else if(strpos($event['message']['text'], 'แป๋งไปไหน') !== false){
-                        $respMessage='ไม่รู้ฮะ อย่าไปพูดถึงเค้าเลย';
-                    }else if(strpos($event['message']['text'], 'ทีเด็ด')){
-                        $respMessage='พูดถึงทำไม จะไปหย่มหรา';
-                    }else if(strpos($event['message']['text'], 'กาก')){
-                        $respMessage='มึงสิกาก';
+                        $respMessage='เรามารวยไปด้วยกันนะ พิมพ์ ทีเด็ด1,2,3';   
+                    }else if($event['message']['text']=='ทีเด็ด1'){
+                        $respMessage='เชฟฟิลด์ ยูไนเต็ด ต่อ ครึ่งลูกครับ แม้จะเป็นเกมส์เยือนแต่เบอร์ตัน อัลเบี้ยนเล่นในบ้านฟอร์มไม่ดีเลย กัดฟันต่อดาบคู่ครับ อับดุลมั่นจายย';
+                    }else if($event['message']['text']=='ทีเด็ด2'){
+                        $respMessage='สูง 2.5 บุนเดสลีกา 2 ไอน์ทรัค เบาร์ชไวน์ พบ บีเลเฟลด์ รั่วด้วยกันทั้งคู่ บีเลเฟลด์ในบ้านกาก ไอน์ทรัคเยือนก็กาก เชื่อว่ายิงกันยับ อับดุลว่าสูงแน่ๆ';
+                    }else if($event['message']['text']=='ทีเด็ด3'){
+                        $respMessage='เดน บอสช์ เจอ โวเลนดัม ราคาเสมอ โวเลนดัมบ๊วยครับ ฟอร์มย่ำแย่จริงๆ ราคาเสมอลุ้นเดน บอสช์ดีกว่าครับ เชื่ออับดุล เราจะรวยไปด้วยกัน';
                     }
                     
                     break;
