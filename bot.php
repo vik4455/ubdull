@@ -18,7 +18,6 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		if ($event['type'] == 'message') {
 			switch($event['message']['type']) {
                 case 'text':
                     //Get replyToken
@@ -36,18 +35,18 @@ if (!is_null($events['events'])) {
                     }else if($event['message']['text']=='แสงเดือน'){
                         $respMessage='คุณเมียที่รักและเคารพ '.$event['message']['text'];
                     }
-                    
-                    $httpClient=new CurlHTTPClient($channel_token); 
-                    $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); $textMessageBuilder=new TextMessageBuilder($respMessage);
-                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
                     break;
                 case 'location':
                     $address = $event['message']['address'];
                     //Reply message
                     $respMessage='Hello, your address is '.$address;
                     break;
-            } 
-        }
+            }
+        $httpClient=new CurlHTTPClient($channel_token); 
+        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); 
+        $textMessageBuilder=new TextMessageBuilder($respMessage);
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        
     }
 }
 
