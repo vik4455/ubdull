@@ -30,8 +30,6 @@ if (!is_null($events['events'])) {
                         $respMessage='น่าจะสาปสูญไปแล้ว';
                     }else if($event['message']['text']=='hispeed'){
                         $respMessage='น่าจะสาปสูญไปแล้ว';
-                    }else if($event['message']['text']=='เสือดำ'){
-                        $respMessage='เพื่อนรัก ผศ ครับ เสาร์นี้อ่างทองระเบิดแน่นวล';
                     }else if($event['message']['text']=='ผศ'){
                         $respMessage='ค่าตับสูงมากฮะ ตับๆ ตับๆ ตับๆๆๆ';
                     }else if($event['message']['text']=='ผอ แมว'){
@@ -48,7 +46,10 @@ if (!is_null($events['events'])) {
                         $respMessage='มันก็แค่ข้ออ้าง รึเปล่าวะ ?';
                     }else if(strpos($event['message']['text'], 'แป๋งไปไหน') !== false){
                         $respMessage='ไม่รู้ฮะ อย่าไปพูดถึงเค้าเลย';
+                    }else if(strpos($event['message']['text'], 'ทีเด็ด')){
+                        $respMessage='พูดถึงทำไม จะไปหย่มหรา';
                     }
+                    
                     break;
             }
         $httpClient=new CurlHTTPClient($channel_token); 
