@@ -23,25 +23,18 @@ if (!is_null($events['events'])) {
                     //Get replyToken
                     $replyToken = $event['replyToken']; //Reply message
                     if($event['message']['text']=='ติดกล้อง'){
-                        $respMessage='ต้องร้าน Hi-Speed Net เลยมีให้เลือกหลายรุ่น สอบถามราคาแต่ละรุ่นเพียงพิมพ์ "1MP" "2MP" "3MP" "4MP" ก็ได้รู้ราคากันแล้ว';   
+                        $respMessage='ต้องร้าน Hi-Speed Net เลยมีให้เลือกหลายรุ่น สอบถามราคาแต่ละรุ่นเพียงพิมพ์ "1MP" "2MP" "4MP" ก็ได้รู้ราคากันแล้ว หรือโทร. 089-2842844 นายห้างชอบสี่มาก';   
                     }else if($event['message']['text']=='1MP'){
-                        $respMessage='HP-IPCH13-VR01 / ราคา 2,300 บาท / <br>- HD Remote View by PC and Smart Phone.<br>
-- Wireless Connection Router<br>
-- 360 Degree Full View Camera';
+                        $respMessage='HP-IPCH13-VR01 / 1.3 ล้านพิกเซล / ราคา 2,300 บาท / HD Remote View by PC and Smart Phone.,Wireless Connection Router,360 Degree Full View Camera';
                     }else if($event['message']['text']=='2MP'){
-                        $respMessage='พ่อภูพุ '.$event['message']['text'];
-                    }else if($event['message']['text']=='3MP'){
-                        $respMessage='พ่อนารา '.$event['message']['text'];
+                        $respMessage='HP-IPCH20-W1002-AP / 2.0 ล้านพิกเซล / ราคา 2,600 บาท / Anti-Cut 3-Axis Bracket
+IP66 Waterproof Standard IR LED: 30PCS IR LED, 30Meter IR Distance';
                     }else if($event['message']['text']=='4MP'){
-                        $respMessage='ซินแสเมืองหนองกี่ '.$event['message']['text'];
-                    }else if($event['message']['text']=='แสงเดือน'){
-                        $respMessage='คุณเมียที่รักและเคารพ '.$event['message']['text'];
+                        $respMessage='HP-IPCH40-W1070-OV / 4.0 ล้านพิกเซล / ราคา 3,500 บาท / Anti-Cut 3-Axis Bracket
+IP66 Waterproof Standard IR LED: 36PCS IR LED, 30Meter IR Distance';
+                    }else if($event['message']['text']=='กูไม่ซื้อ'){
+                        $respMessage='ไอ่ซ้าด แล้วมึงถามทำฟรวยไร ';
                     }
-                    break;
-                case 'location':
-                    $address = $event['message']['address'];
-                    //Reply message
-                    $respMessage='Hello, your address is '.$address;
                     break;
             }
         $httpClient=new CurlHTTPClient($channel_token); 
