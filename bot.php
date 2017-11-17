@@ -22,7 +22,9 @@ if (!is_null($events['events'])) {
                 case 'text':
                     //Get replyToken
                     $replyToken = $event['replyToken']; //Reply message
-                    if($event['message']['text']=='ติดกล้อง'){
+                    if($event['message']['text']=='ubdull'){
+                        $respMessage='ถามเอาที่กุจะพอรู้นะ สัส !!!';   
+                    }else if($event['message']['text']=='ติดกล้อง'){
                         $respMessage='ต้องร้าน Hi-Speed Net เลยมีให้เลือกหลายรุ่น สอบถามราคาแต่ละรุ่นเพียงพิมพ์ "1MP" "2MP" "4MP" ก็ได้รู้ราคากันแล้ว หรือโทร. 089-2842844 นายห้างชอบสี่มาก';   
                     }else if($event['message']['text']=='1MP'){
                         $respMessage='HP-IPCH13-VR01 / 1.3 ล้านพิกเซล / ราคา 2,300 บาท / HD Remote View by PC and Smart Phone.,Wireless Connection Router,360 Degree Full View Camera';
@@ -38,6 +40,12 @@ IP66 Waterproof Standard IR LED: 36PCS IR LED, 30Meter IR Distance';
                         $respMessage='อย่าให้พูดถึงเลยครับ องค์กรเหี้ยๆแบบนั้น';
                     }else if($event['message']['text']=='สกค'){
                         $respMessage='น่าจะสาปสูญไปแล้ว';
+                    }else if($event['message']['text']=='hispeed'){
+                        $respMessage='น่าจะสาปสูญไปแล้ว';
+                    }else if($event['message']['text']=='เสือดำ'){
+                        $respMessage='จุ๊ๆ โส่ยอยู่ ให้เมียเผลอก่อน';
+                    }else if($event['message']['text']=='ผศ'){
+                        $respMessage='ค่าตับสูงมากฮะ ตับๆ ตับๆ ตับๆๆๆ';
                     }
                     break;
             }
