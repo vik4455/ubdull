@@ -4,6 +4,7 @@ require_once('./vendor/autoload.php');
 use \LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use \LINE\LINEBot;
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use \LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
 
 $channel_token = 'wg5krRjKGZ3LnV109YBgOLOJ0f/cdg2ZkXHUjW8G9GLbDPhG8RasvXp6IXOq2gk0fhU083AzutOM0pJbyVHb9L5bewHM5145QWTRz5a69QnhHQFGR1LmLYPzkLv6oJz/0493BO+moa6fBWN76U3XMgdB04t89/1O/w1cDnyilFU=';
 $channel_secret = 'd171b56cec58a1af71389799f9564b10';
@@ -34,13 +35,17 @@ if (!is_null($events['events'])) {
                         $respMessage='ซินแสเมืองหนองกี่ '.$event['message']['text'];
                     }else if($event['message']['text']=='แสงเดือน'){
                         $respMessage='คุณเมียที่รักและเคารพ '.$event['message']['text'];
-                    }else{
-                        $respMessage='สุดยอดคุณพ่ออยู่นี่แหละ';
                     }
                     
                     $httpClient=new CurlHTTPClient($channel_token); 
                     $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); $textMessageBuilder=new TextMessageBuilder($respMessage);
                     $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                    break;
+                case 'location':
+                    $address = $event['message']['address'];
+                    //Reply message
+                    $respMessage='Hello, your address is '.$address;
+                    break;
             } 
         }
     }
