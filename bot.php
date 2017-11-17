@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
                     }else if(strpos($event['message']['text'], 'ราชการ') !== false){
                         $respMessage='มันก็แค่ข้ออ้าง รึเปล่าวะ ?';
                     }else if(strpos($event['message']['text'], 'แป๋งไปไหน') !== false){
-                        $respMessage='?';
+                        $respMessage='ไม่รู้ฮะ อย่าไปพูดถึงเค้าเลย';
                     }
                     break;
             }
