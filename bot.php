@@ -42,16 +42,16 @@ if (!is_null($events['events'])) {
                         $respMessage='การพนันไม่ทำให้ใครรวยนะครับ';
                         $textMessageBuilder=new TextMessageBuilder($respMessage);
                         break;
-                    }else if (strpos($event['message']['text'], 'สัส') !== false) {
+                    }else if (strpos($event['message']['text'], 'สัส') !== false){
                         $respMessage='หยาบคายชิบหาย ควย';
                         $textMessageBuilder=new TextMessageBuilder($respMessage);
                         break;
-                    }else if(strpos($event['message']['text'],'ไก่ขาว'){
+                    }else if(strpos($event['message']['text'],'ไก่ขาว') !== false){
                         $originalContentUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
                         $previewImageUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
                         $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
                         break;
-                    }else if(strpos($event['message']['text'],'ขอราคา'){
+                    }else if(strpos($event['message']['text'],'ขอราคา') !== false){
                         $originalContentUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
                         $previewImageUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
                         $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
