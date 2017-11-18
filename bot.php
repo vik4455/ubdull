@@ -48,7 +48,6 @@ if (!is_null($events['events'])) {
                         $stickerId = 3;
                         $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
                         break;
-                        break;
                     }else if (strpos($event['message']['text'], 'มีเคร') !== false) {
                         $respMessage='การพนันไม่ทำให้ใครรวยนะครับ';
                         $textMessageBuilder=new TextMessageBuilder($respMessage);
