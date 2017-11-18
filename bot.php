@@ -19,8 +19,8 @@ $events=json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
-		// Reply only when message sent is in 'text' format
-			switch($event['message']['type']) {
+        $replyToken = $event['replyToken']; 
+		switch($event['message']['type']) {
             case 'text': {
                     switch(strtolower($event['message']['text'])) { 
                         case 'm':
@@ -73,11 +73,11 @@ if (!is_null($events['events'])) {
                 $respMessage='What is you sent ?'; 
                 break;
         }
-        $httpClient=new CurlHTTPClient($channel_token); 
-        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); 
         
-        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        $httpClient = new CurlHTTPClient($channel_token);
+        $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
         
+        $response=$bot->replyMessage($replyToken, $textMessageBuilder);
     }
 }
 
