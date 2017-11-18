@@ -27,9 +27,9 @@ if (!is_null($events['events'])) {
                     if($event['message']['text']=='ubdull'){
                         $respMessage='เรามารวยไปด้วยกันนะ พิมพ์ ทีเด็ด1,2,3';
                         $textMessageBuilder=new TextMessageBuilder($respMessage);
-                    }else if($event['message']['text']=='กะแป๋ง'){
-                        $originalContentUrl = 'https://0.soompi.io/wp-content/uploads/q/3/9w/461510/461510.jpg';
-                        $previewImageUrl = 'https://0.soompi.io/wp-content/uploads/q/3/9w/461510/461510.jpg';
+                    }else if(strpos($event['message']['text'],'ทีเด็ด'){
+                        $originalContentUrl = 'https://scontent-fbkk5-7.us-fbcdn.net/v1/t.1-48/1426l78O9684I4108ZPH0J4S8_842023153_K1DlXQOI5DHP/dskvvc.qpjhg.xmwo/w/data/1006/1006732-img.s86i03.ukvq.jpg';
+                        $previewImageUrl = 'https://scontent-fbkk5-7.us-fbcdn.net/v1/t.1-48/1426l78O9684I4108ZPH0J4S8_842023153_K1DlXQOI5DHP/dskvvc.qpjhg.xmwo/w/data/1006/1006732-img.s86i03.ukvq.jpg';
                         $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
                     }else if($event['message']['text']=='กากแป๋ง'){
                         $packageId = 1; 
