@@ -48,6 +48,9 @@ if (!is_null($events['events'])) {
                         $stickerId = 3;
                         $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
                         break;
+                    }else if (strpos($event['message']['text'], 'มีเครไม๊') !== false) {
+                        $respMessage='แบ่งให้เจ้านายอับดุลด้วยคับ';
+                        $textMessageBuilder=new TextMessageBuilder($respMessage);
                     }
                     
                     break;
