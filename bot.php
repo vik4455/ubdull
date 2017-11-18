@@ -27,18 +27,6 @@ if (!is_null($events['events'])) {
                     if($event['message']['text']=='ubdull'){
                         $respMessage='เรามารวยไปด้วยกันนะ พิมพ์ ทีเด็ด1,2,3';
                         $textMessageBuilder=new TextMessageBuilder($respMessage);
-                    }else if($event['message']['text']=='ทีเด็ด1'){
-                        $respMessage='เชฟฟิลด์ ยูไนเต็ด ต่อ ครึ่งลูกครับ แม้จะเป็นเกมส์เยือนแต่เบอร์ตัน อัลเบี้ยนเล่นในบ้านฟอร์มไม่ดีเลย กัดฟันต่อดาบคู่ครับ อับดุลมั่นจายย';
-                        $textMessageBuilder=new TextMessageBuilder($respMessage);
-                    }else if($event['message']['text']=='ทีเด็ด2'){
-                        $respMessage='สูง 2.5 บุนเดสลีกา 2 ไอน์ทรัค เบาร์ชไวน์ พบ บีเลเฟลด์ รั่วด้วยกันทั้งคู่ บีเลเฟลด์ในบ้านกาก ไอน์ทรัคเยือนก็กาก เชื่อว่ายิงกันยับ อับดุลว่าสูงแน่ๆ';
-                        $textMessageBuilder=new TextMessageBuilder($respMessage);
-                    }else if($event['message']['text']=='ทีเด็ด3'){
-                        $respMessage='เดน บอสช์ เจอ โวเลนดัม ราคาเสมอ โวเลนดัมบ๊วยครับ ฟอร์มย่ำแย่จริงๆ ราคาเสมอลุ้นเดน บอสช์ดีกว่าครับ เชื่ออับดุล เราจะรวยไปด้วยกัน';
-                        $textMessageBuilder=new TextMessageBuilder($respMessage);
-                    }else if($event['message']['text']=='บอลสเต็ป'){
-                        $respMessage='ต่อเชฟยู - สูงไอน์ทรัค เบราชไวน์ - เดน บอสช์ - วิสล่าคราคอฟ ';
-                        $textMessageBuilder=new TextMessageBuilder($respMessage);
                     }else if($event['message']['text']=='กะแป๋ง'){
                         $originalContentUrl = 'https://0.soompi.io/wp-content/uploads/q/3/9w/461510/461510.jpg';
                         $previewImageUrl = 'https://0.soompi.io/wp-content/uploads/q/3/9w/461510/461510.jpg';
@@ -48,8 +36,8 @@ if (!is_null($events['events'])) {
                         $stickerId = 3;
                         $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
                         break;
-                    }else if (strpos($event['message']['text'], 'มีเครไม๊') !== false) {
-                        $respMessage='แบ่งให้เจ้านายอับดุลด้วยคับ';
+                    }else if (strpos($event['message']['text'], 'มีเคร') !== false) {
+                        $respMessage='การพนันไม่ทำให้ใครรวยนะครับ';
                         $textMessageBuilder=new TextMessageBuilder($respMessage);
                     }
                     
