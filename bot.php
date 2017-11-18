@@ -21,43 +21,58 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 			switch($event['message']['type']) {
-                case 'text':
-                    //Get replyToken
-                    $replyToken = $event['replyToken']; //Reply message
-                    if($event['message']['text']=='ubdull'){
-                        $respMessage='เรามารวยไปด้วยกันนะ พิมพ์ ทีเด็ด1,2,3';
-                        $textMessageBuilder=new TextMessageBuilder($respMessage);
-                        break;
-                    }else if($event['message']['text']=='กาก'){
-                        $packageId = 1; 
-                        $stickerId = 3;
-                        $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
-                        break;
-                    }else if(strpos($event['message']['text'],'ทีเด็ด'){
-                        $originalContentUrl = 'https://scontent-fbkk5-7.us-fbcdn.net/v1/t.1-48/1426l78O9684I4108ZPH0J4S8_842023153_K1DlXQOI5DHP/dskvvc.qpjhg.xmwo/w/data/1006/1006732-img.s86i03.ukvq.jpg';
-                        $previewImageUrl = 'https://scontent-fbkk5-7.us-fbcdn.net/v1/t.1-48/1426l78O9684I4108ZPH0J4S8_842023153_K1DlXQOI5DHP/dskvvc.qpjhg.xmwo/w/data/1006/1006732-img.s86i03.ukvq.jpg';
-                        $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
-                        break;
-                    }else if (strpos($event['message']['text'], 'มีเคร') !== false) {
-                        $respMessage='การพนันไม่ทำให้ใครรวยนะครับ';
-                        $textMessageBuilder=new TextMessageBuilder($respMessage);
-                        break;
-                    }else if (strpos($event['message']['text'], 'สัส') !== false){
-                        $respMessage='หยาบคายชิบหาย ควย';
-                        $textMessageBuilder=new TextMessageBuilder($respMessage);
-                        break;
-                    }else if(strpos($event['message']['text'],'ไก่ขาว') !== false){
-                        $originalContentUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
-                        $previewImageUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
-                        $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
-                        break;
-                    }else if(strpos($event['message']['text'],'ขอราคา') !== false){
-                        $originalContentUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
-                        $previewImageUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
-                        $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
+            case 'text': {
+                    switch(strtolower($event['message']['text'])) { 
+                        case 'm':
+                            $respMessage='What sup man.Go away!';
+                            break; 
+                        case 'f':
+                            $respMessage='Love you lady.';
+                            break; 
+                        default:
+                            $respMessage='What is your sex? M or F'; 
                         break;
                     }
-            }
+                }
+                $textMessageBuilder=new TextMessageBuilder($respMessage);
+                break;
+            case 'image':
+                $originalContentUrl = 'https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAwNS82NDQvb3JpZ2luYWwvbW9vbi13YXRjaGluZy1uaWdodC0xMDA5MTYtMDIuanBn';
+                $previewImageUrl = 'https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAwNS82NDQvb3JpZ2luYWwvbW9vbi13YXRjaGluZy1uaWdodC0xMDA5MTYtMDIuanBn';
+                $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
+                //$messageID = $event['message']['id']; 
+                //$respMessage='Hello, your image ID is '.$messageID;
+                break;
+            case 'sticker':
+                $packageId = 1; 
+                $stickerId = 3;
+                $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
+                break;
+            case 'location':
+                $address = $event['message']['address'];
+                $respMessage='Hello, your address is '.$address;
+                break;
+//            case 'video':
+//                $messageID = $event['message']['id'];
+//                $fileID = $event['message']['id'];
+//                $response = $bot->getMessageContent($fileID); 
+//                $fileName = 'linebot.mp4'; 
+//                $file=fopen($fileName, 'w');
+//                fwrite($file, $response->getRawBody());
+//                $respMessage='Hello, your video ID is '.$messageID;
+//                break;
+//            case 'audio':
+//                $messageID = $event['message']['id'];
+//                $fileID = $event['message']['id'];
+//                $response = $bot->getMessageContent($fileID); 
+//                $fileName = 'linebot.m4a'; $file=fopen($fileName, 'w');
+//                fwrite($file, $response->getRawBody());
+//                $respMessage='Hello, your audio ID is '.$messageID;
+//                break;
+            default:
+                $respMessage='What is you sent ?'; 
+                break;
+        }
         $httpClient=new CurlHTTPClient($channel_token); 
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret)); 
         
