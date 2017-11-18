@@ -31,7 +31,11 @@ if (!is_null($events['events'])) {
                         $originalContentUrl = 'https://scontent-fbkk5-7.us-fbcdn.net/v1/t.1-48/1426l78O9684I4108ZPH0J4S8_842023153_K1DlXQOI5DHP/dskvvc.qpjhg.xmwo/w/data/1006/1006732-img.s86i03.ukvq.jpg';
                         $previewImageUrl = 'https://scontent-fbkk5-7.us-fbcdn.net/v1/t.1-48/1426l78O9684I4108ZPH0J4S8_842023153_K1DlXQOI5DHP/dskvvc.qpjhg.xmwo/w/data/1006/1006732-img.s86i03.ukvq.jpg';
                         $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
-                    }else if($event['message']['text']=='กากแป๋ง'){
+                    }else if(strpos($event['message']['text'],'ไก่ขาว'){
+                        $originalContentUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
+                        $previewImageUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
+                        $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
+                    }else if($event['message']['text']=='กาก'){
                         $packageId = 1; 
                         $stickerId = 3;
                         $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
