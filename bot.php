@@ -35,6 +35,10 @@ if (!is_null($events['events'])) {
                         $originalContentUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
                         $previewImageUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
                         $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
+                    }else if(strpos($event['message']['text'],'ขอราคา'){
+                        $originalContentUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
+                        $previewImageUrl = 'https://cdn.images.express.co.uk/img/dynamic/67/590x/Tottenham-v-Arsenal-Pochettino-Chelsea-title-race-798540.jpg';
+                        $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
                     }else if($event['message']['text']=='กาก'){
                         $packageId = 1; 
                         $stickerId = 3;
@@ -42,6 +46,9 @@ if (!is_null($events['events'])) {
                         break;
                     }else if (strpos($event['message']['text'], 'มีเคร') !== false) {
                         $respMessage='การพนันไม่ทำให้ใครรวยนะครับ';
+                        $textMessageBuilder=new TextMessageBuilder($respMessage);
+                    }else if (strpos($event['message']['text'], 'สัส') !== false) {
+                        $respMessage='หยาบคายชิบหาย ควย';
                         $textMessageBuilder=new TextMessageBuilder($respMessage);
                     }
                     
