@@ -22,20 +22,29 @@ if (!is_null($events['events'])) {
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-                    $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
-                    $dbname = 'dcoh0blsle9i6l'; 
-                    $user = 'fljlfseofpkpfr';
-                    $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
-                    $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-                    
-                    $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$event['message']['text']."'");
-                    $result = $connection->query($sql);
-                    error_log($sql);
-                    $amount = $result->rowCount();
-                    if($result){
-                        $respMessage='XXX = '.$amount;
+        $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
+        $dbname = 'dcoh0blsle9i6l'; 
+        $user = 'fljlfseofpkpfr';
+        $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
+        $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+            if($result){
+                $txttel =explode(',', $event['message']['text']);
+                $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$txttel[1]."'");
+                $result = $connection->query($sql);
+                error_log($sql);
+                $amount = $result->rowCount();
+                if(count($txttel) == 3) {
+                    if($txttel[0]=='mem'){
+                        $respMessage='เบอร์ '.$txttel[1].' จำไปแล้วครับ';   
                     }
-        }
+                }
+                if(count($txttel) == 2) {
+                    if($txttel[0]=='show'){
+                        $respMessage=$txttel[1].' => '.$txttel[2];
+                    }
+                }
+            }
+        }//if event
         
         $httpClient = new CurlHTTPClient($channel_token);
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
