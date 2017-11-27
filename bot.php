@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
                     $lname = $connection->query($sql);
                     error_log($sql);
                     
-                    if($result==false || $result->rowCount()<=0){
+                    if($lname==false || $lname->rowCount()<=0){
                         if($txttel[0]=="mem"){
                         $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
                         $dbname = 'dcoh0blsle9i6l'; 
