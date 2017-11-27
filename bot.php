@@ -22,17 +22,16 @@ if (!is_null($events['events'])) {
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+        $txttel =explode(',', $event['message']['text']);
         $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
         $dbname = 'dcoh0blsle9i6l'; 
         $user = 'fljlfseofpkpfr';
         $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
         $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+        $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$txttel[1]."'");
+        error_log($sql);
         $result = $connection->query($sql);
             if($result){
-                $txttel =explode(',', $event['message']['text']);
-                $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$txttel[1]."'");
-                
-                error_log($sql);
                 $amount = $result->rowCount();
                 $respMessage = "X";
                 $respMessage .= $txttel[0]." => ".$txttel[1]." => ".$txttel[2]." => ".$amount;
