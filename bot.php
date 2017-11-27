@@ -32,10 +32,10 @@ if (!is_null($events['events'])) {
                     $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
                     
                     $sql=sprintf("SELECT * FROM com4_6_phone WHERE name ='".$txttel[1]."'");
-                    $lname = $connection->query($sql);
+                    $result = $connection->query($sql);
                     error_log($sql);
                     
-                    if($lname==false || $lname->rowCount()<=0){
+                    if($result==false || $result->rowCount()<=0){
                         if($txttel[0]=="mem"){
                         $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
                         $dbname = 'dcoh0blsle9i6l'; 
@@ -45,8 +45,11 @@ if (!is_null($events['events'])) {
                         $params = array('tpre'=> $txttel[0], 'tname'=> $txttel[1],'ttel'=> $txttel[2],);
                         $statement=$connection->prepare("INSERT INTO com4_6_phone (name,mobile) VALUES(:tname,:ttel)");
                         $result = $statement->execute($params);
-                        $respMessage='จำเบอร์ '.$txttel[1].' เรียบร้อยแล้ว';
-                        
+                        if($result !== null) {
+                            $respMessage='จำเบอร์ '.$txttel[1].' เรียบร้อยแล้ว';
+                        }else{
+                            $respMessage='ติดต่อไม่ได้';
+                        }
                         }else{
                         $respMessage='เบอร์ '.$txttel[1].' จำไปแล้วครับ พิมพ์ เบอร์,ชื่อคนที่ต้องการ เพื่อดูเบอร์';    
                         }   
