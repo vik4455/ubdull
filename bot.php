@@ -36,13 +36,15 @@ if (!is_null($events['events'])) {
                 $amount = $result->rowCount();
                 if($amount==0){
                     if(($txttel[0]=="mem")&&(is_numeric($txttel[2]))&&(strlen($txttel[2])>=8)){
+                        $params = array('name'=> $txttel[1], 'tel'=> $txttel[2],);
+                        $statement=$connection->prepare('INSERT INTO com4_6_phone (name,phone)VALUES(:name,:tel)');
+                        $statement->execute($params);
                         $respMessage = "บันทึก ";    
                     }else{
-                        $respMessage = "สั่งอะไรวะ ";
+                        $respMessage = "สั่งอะไรวะ ดูรูปแบบด้วย";
                     } 
                 }else{
-                    $respMessage = "มีแล้ว ";
-                    $respMessage .= $txttel[1]." => ".$txttel[2]." => ".$amount;    
+                    $respMessage = "มีแล้ว ";  
                 }
                 
             }else{
