@@ -33,8 +33,13 @@ if (!is_null($events['events'])) {
         $result = $connection->query($sql);
             if($result){
                 $amount = $result->rowCount();
-                $respMessage = "X";
-                $respMessage .= $txttel[0]." => ".$txttel[1]." => ".$txttel[2]." => ".$amount;
+                if($amount==0){
+                    $respMessage = "บันทึก ";
+                }else{
+                    $respMessage = "มีแล้ว ";
+                    $respMessage .= $txttel[1]." => ".$txttel[2]." => ".$amount;    
+                }
+                
             }else{
                 $respMessage = $sql." ".$txttel[1];
             }
