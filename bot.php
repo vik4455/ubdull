@@ -31,6 +31,7 @@ if (!is_null($events['events'])) {
                     $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
                     $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
                     $params = array('tpre'=> $txttel[0], 'tname'=> $txttel[1],'ttel'=> $txttel[2],);
+                    
                     $sql=sprintf("SELECT * FROM com4_6_phone WHERE name ='".$txttel[1]."'");
                     $lname = $connection->query($sql);
                     error_log($sql);
@@ -42,8 +43,7 @@ if (!is_null($events['events'])) {
                         $user = 'fljlfseofpkpfr';
                         $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
                         $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-                        $params = array('tpre'=> $txttel[0], 'tname'=> $txttel[1],'ttel'=> $txttel[2],);
-
+                        
                         $statement=$connection->prepare("INSERT INTO com4_6_phone (name,mobile)VALUES(:tname,:ttel)");
                         $result = $statement->execute($params);
                         $respMessage='จำเบอร์ '.$txttel[1].' เรียบร้อยแล้ว';
