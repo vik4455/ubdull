@@ -22,7 +22,8 @@ if (!is_null($events['events'])) {
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-        $txttel =explode(',', $event['message']['text']);
+        $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
+        
         $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
         $dbname = 'dcoh0blsle9i6l'; 
         $user = 'fljlfseofpkpfr';
@@ -34,7 +35,11 @@ if (!is_null($events['events'])) {
             if($result){
                 $amount = $result->rowCount();
                 if($amount==0){
-                    $respMessage = "บันทึก ";
+                    if($txttel[0]=="mem"){
+                        $respMessage = "บันทึก ";    
+                    }else{
+                        $respMessage = "สั่งอะไรวะ ";
+                    } 
                 }else{
                     $respMessage = "มีแล้ว ";
                     $respMessage .= $txttel[1]." => ".$txttel[2]." => ".$amount;    
