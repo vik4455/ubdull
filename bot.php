@@ -33,16 +33,8 @@ if (!is_null($events['events'])) {
                 $result = $connection->query($sql);
                 error_log($sql);
                 $amount = $result->rowCount();
-                if(count($txttel) == 3) {
-                    if($txttel[0]=='mem'){
-                        $respMessage='เบอร์ '.$txttel[1].' จำไปแล้วครับ';   
-                    }
-                }
-                if(count($txttel) == 2) {
-                    if($txttel[0]=='show'){
-                        $respMessage=$txttel[1].' => '.$txttel[2];
-                    }
-                }
+                
+                $respMessage = $txttel[0].' => '.$txttel[1].' => '.$txttel[2].' => '.$amount;
             }
         }//if event
         
