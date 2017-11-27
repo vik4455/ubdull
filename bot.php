@@ -43,9 +43,9 @@ if (!is_null($events['events'])) {
                     }else{
                         $respMessage = "สั่งอะไรวะ ดูรูปแบบด้วย";
                     } 
-                }else{
-                    if(($txttel[0]=="เบอร์")&&($txttel[1]!="")){
-                        $sqlt=sprintf("SELECT tel FROM com4_6_phone WHERE name = '".$txttel[1]."'");
+                }
+                if(($txttel[0]=="เบอร์")&&($txttel[1]!="")){
+                  $sqlt=sprintf("SELECT tel FROM com4_6_phone WHERE name = '".$txttel[1]."'");
                         error_log($sqlt);
                         $res = $connection->query($sqlt);
                         if (!$res) {
@@ -53,9 +53,9 @@ if (!is_null($events['events'])) {
                             exit;
                         }else{
                             $respMessage = "เบอร์ ";    
-                        }  
-                    }    
-                }
+                        }        
+                }    
+                
                 
             }else{
                 $respMessage = $sql." ".$txttel[1];
