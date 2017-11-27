@@ -33,8 +33,10 @@ if (!is_null($events['events'])) {
                 $result = $connection->query($sql);
                 error_log($sql);
                 $amount = $result->rowCount();
-                
-                $respMessage = $txttel[0]." => ".$txttel[1]." => ".$txttel[2]." => ".$amount;
+                $respMessage = "X";
+                $respMessage .= $txttel[0]." => ".$txttel[1]." => ".$txttel[2]." => ".$amount;
+            }else{
+                $respMessage = "XXX";
             }
         }//if event
         
