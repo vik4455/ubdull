@@ -22,34 +22,21 @@ if (!is_null($events['events'])) {
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-            $txttel =explode(',', $event['message']['text']);
-            if(count($txttel) == 3) {
-                try{
                     $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
                     $dbname = 'dcoh0blsle9i6l'; 
                     $user = 'fljlfseofpkpfr';
                     $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
                     $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
                     
-                    $sql=sprintf("SELECT * FROM com4_6_phone WHERE name ='".$txttel[1]."'");
+                    $sql=sprintf("SELECT * FROM com4_6_phone");
                     $result = $connection->query($sql);
                     error_log($sql);
-                    
-                    $respMessage='จำเบอร์ '.$txttel[1].' เรียบร้อยแล้ว'.$result->rowCount();
-                    
-                }catch(Exception $e){ 
-                error_log($e->getMessage());
-                } 
-                
-            }
-            if(count($txttel) == 2) {
-               if($txttel[0]=="เบอร์"){
-                   $respMessage='เบอร์ '.$txttel[1].' จำไปแล้วครับ';
-               } 
-            }
-            if($event['message']['text']=="ubdull"){
-                $respMessage = "พิมพ์ mem,ชื่อเพื่อน,เบอร์โทร เพื่อให้อับดุลจดจำเบอร์ใครก็ได้";    
-            }
+                    if($result){
+                        $amount = $result->rowCount();
+                        $respMessage='XXX = '.$amount;
+                    }else{
+                        $respMessage='ZZZ';
+                    }
         }
         
         $httpClient = new CurlHTTPClient($channel_token);
