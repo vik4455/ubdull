@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
             if($result){
                 $amount = $result->rowCount();
                 if($amount==0){
-                    if($txttel[0]=="mem"){
+                    if(($txttel[0]=="mem")&&(is_numeric($txttel[2]))){
                         $respMessage = "บันทึก ";    
                     }else{
                         $respMessage = "สั่งอะไรวะ ";
