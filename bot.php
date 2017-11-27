@@ -49,7 +49,7 @@ if (!is_null($events['events'])) {
                         error_log($sqlt);
                         $res = $connection->query($sqlt);
                         if (!$res) {
-                            $respMessage "An error occurred.\n";
+                            $respMessage = "An error occurred.\n";
                             exit;
                         }else{
                             $respMessage = "เบอร์ ";    
