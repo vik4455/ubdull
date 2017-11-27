@@ -46,7 +46,7 @@ if (!is_null($events['events'])) {
                 }else{
                     if(($txttel[0]=="เบอร์")&&($txttel[1]!="")){
                         $sqlt=sprintf("SELECT tel FROM com4_6_phone WHERE name = '".$txttel[1]."'");
-                        error_log($sql);
+                        error_log($sqlt);
                         $res = $connection->query($sqlt);
                         if (!$res) {
                             $respMessage "An error occurred.\n";
