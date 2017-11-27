@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
                 error_log($sql);
                 $amount = $result->rowCount();
                 
-                $respMessage = $txttel[0].' => '.$txttel[1].' => '.$txttel[2].' => '.$amount;
+                $respMessage = $txttel[0]." => ".$txttel[1]." => ".$txttel[2]." => ".$amount;
             }
         }//if event
         
