@@ -44,8 +44,16 @@ if (!is_null($events['events'])) {
                         $respMessage = "สั่งอะไรวะ ดูรูปแบบด้วย";
                     } 
                 }else{
-                    if($txttel[0]=="เบอร์"){
-                        $respMessage = "มีแล้ว ";    
+                    if(($txttel[0]=="เบอร์")&&($txttel[1]!="")){
+                        $sqlt=sprintf("SELECT tel FROM com4_6_phone WHERE name = '".$txttel[1]."'");
+                        error_log($sql);
+                        $res = $connection->query($sqlt);
+                        if (!$res) {
+                            $respMessage "An error occurred.\n";
+                            exit;
+                        }else{
+                            $respMessage = "เบอร์ ";    
+                        }  
                     }    
                 }
                 
