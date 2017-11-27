@@ -8,8 +8,8 @@ use \LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
 use \LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
 use \LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
 
-$channel_token = 'wg5krRjKGZ3LnV109YBgOLOJ0f/cdg2ZkXHUjW8G9GLbDPhG8RasvXp6IXOq2gk0fhU083AzutOM0pJbyVHb9L5bewHM5145QWTRz5a69QnhHQFGR1LmLYPzkLv6oJz/0493BO+moa6fBWN76U3XMgdB04t89/1O/w1cDnyilFU=';
-$channel_secret = 'd171b56cec58a1af71389799f9564b10';
+$channel_token = 'sOttPVIPecY31qh4PLzQ/OFyyTBn7/oIk3rvObgarbgkS954zwoItNBVBRiXmCVIfhU083AzutOM0pJbyVHb9L5bewHM5145QWTRz5a69QlnQEYMcsLT4WAJlqANJ+ivQ0wyoJ91FOHmIP351/LPQwdB04t89/1O/w1cDnyilFU=';
+$channel_secret = '7d7c763746c7377064d0d8f491f01679';
 
 //Get message from Line API
 $content = file_get_contents('php://input');
@@ -20,58 +20,51 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
         $replyToken = $event['replyToken']; 
-		switch($event['message']['type']) {
-            case 'text': {
-                    switch(strtolower($event['message']['text'])) { 
-                        case 'm':
-                            $respMessage='What sup man.Go away!';
-                            break; 
-                        case 'f':
-                            $respMessage='Love you lady.';
-                            break; 
-                        default:
-                            $respMessage='What is your sex? M or F'; 
-                        break;
+		
+        if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+            $txttel =explode(',', $event['message']['text']);
+            if(count($txttel) == 3) {
+                try{
+                    $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
+                    $dbname = 'dcoh0blsle9i6l'; 
+                    $user = 'fljlfseofpkpfr';
+                    $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
+                    $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+                    $params = array('tpre'=> $txttel[0], 'tname'=> $txttel[1],'ttel'=> $txttel[2],);
+                    $sql=sprintf("SELECT * FROM com4_6_phone WHERE name ='".$txttel[1]."'");
+                    $lname = $connection->query($sql);
+                    error_log($sql);
+                    
+                    if($result==false || $result->rowCount()<=0){
+                        if($txttel[0]=="mem"){
+                        $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
+                        $dbname = 'dcoh0blsle9i6l'; 
+                        $user = 'fljlfseofpkpfr';
+                        $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
+                        $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+                        $params = array('tpre'=> $txttel[0], 'tname'=> $txttel[1],'ttel'=> $txttel[2],);
+
+                        $statement=$connection->prepare("INSERT INTO com4_6_phone (name,mobile)VALUES(:tname,:ttel)");
+                        $result = $statement->execute($params);
+                        $respMessage='จำเบอร์ '.$txttel[1].' เรียบร้อยแล้ว';
+                        }else{
+                        $respMessage='เบอร์ '.$txttel[1].' จำไปแล้วครับ พิมพ์ เบอร์,ชื่อคนที่ต้องการ เพื่อดูเบอร์';    
+                        }   
                     }
-                }
-                $textMessageBuilder=new TextMessageBuilder($respMessage);
-                break;
-            case 'image':
-                $originalContentUrl = 'https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAwNS82NDQvb3JpZ2luYWwvbW9vbi13YXRjaGluZy1uaWdodC0xMDA5MTYtMDIuanBn';
-                $previewImageUrl = 'https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAwNS82NDQvb3JpZ2luYWwvbW9vbi13YXRjaGluZy1uaWdodC0xMDA5MTYtMDIuanBn';
-                $textMessageBuilder=new ImageMessageBuilder($originalContentUrl, $previewImageUrl);
-                //$messageID = $event['message']['id']; 
-                //$respMessage='Hello, your image ID is '.$messageID;
-                break;
-            case 'sticker':
-                $packageId = 1; 
-                $stickerId = 3;
-                $textMessageBuilder=new StickerMessageBuilder($packageId, $stickerId);
-                break;
-            case 'location':
-                $address = $event['message']['address'];
-                $respMessage='Hello, your address is '.$address;
-                break;
-//            case 'video':
-//                $messageID = $event['message']['id'];
-//                $fileID = $event['message']['id'];
-//                $response = $bot->getMessageContent($fileID); 
-//                $fileName = 'linebot.mp4'; 
-//                $file=fopen($fileName, 'w');
-//                fwrite($file, $response->getRawBody());
-//                $respMessage='Hello, your video ID is '.$messageID;
-//                break;
-//            case 'audio':
-//                $messageID = $event['message']['id'];
-//                $fileID = $event['message']['id'];
-//                $response = $bot->getMessageContent($fileID); 
-//                $fileName = 'linebot.m4a'; $file=fopen($fileName, 'w');
-//                fwrite($file, $response->getRawBody());
-//                $respMessage='Hello, your audio ID is '.$messageID;
-//                break;
-            default:
-                $respMessage='What is you sent ?'; 
-                break;
+                    
+                }catch(Exception $e){ 
+                error_log($e->getMessage());
+                } 
+                
+            }
+            if(count($txttel) == 2) {
+               if($txttel[0]=="เบอร์"){
+                   $respMessage='เบอร์ '.$txttel[1].' จำไปแล้วครับ';
+               } 
+            }
+            if($event['message']['text']=="ubdull"){
+                $respMessage = "พิมพ์ mem,ชื่อเพื่อน,เบอร์โทร เพื่อให้อับดุลจดจำเบอร์ใครก็ได้";    
+            }
         }
         
         $httpClient = new CurlHTTPClient($channel_token);
