@@ -36,7 +36,7 @@ if (!is_null($events['events'])) {
                 $respMessage = "X";
                 $respMessage .= $txttel[0]." => ".$txttel[1]." => ".$txttel[2]." => ".$amount;
             }else{
-                $respMessage = error_log($sql);
+                $respMessage = error_log($sql).$txttel[1];
             }
         }//if event
         
