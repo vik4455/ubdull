@@ -31,11 +31,9 @@ if (!is_null($events['events'])) {
                     $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$event['message']['text']."'");
                     $result = $connection->query($sql);
                     error_log($sql);
+                    $amount = $result->rowCount();
                     if($result){
-                        $amount = $result->rowCount();
                         $respMessage='XXX = '.$amount;
-                    }else{
-                        $respMessage='ZZZ';
                     }
         }
         
