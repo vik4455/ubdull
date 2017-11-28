@@ -31,9 +31,10 @@ if (!is_null($events['events'])) {
             if (strpos($event['message']['text'], ',') !== false) {
                 $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
                 if(count($txttel) == 2) {
-                    $respMessage = 'มี , 2';
+                    
+                    $respMessage = 'มี , 2 '.$txttel[0];
                 }else if(count($txttel) == 3){
-                    $respMessage = 'มี , 3';
+                    $respMessage = 'มี , 3'.$txttel[0];
                 }
                 
                 $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$txttel[1]."'");
