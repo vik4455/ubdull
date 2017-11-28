@@ -22,24 +22,29 @@ if (!is_null($events['events'])) {
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-        if (strpos($event['message']['text'], ',') !== false) {
-            $respMessage = 'มี ,';
-        }else{
-            $respMessage = 'ไม่มี ,';
+            $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
+            $dbname = 'dcoh0blsle9i6l'; 
+            $user = 'fljlfseofpkpfr';
+            $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
+            $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+            
+            if (strpos($event['message']['text'], ',') !== false) {
+                $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
+                if(count($txttel) == 2) {
+                    $respMessage = 'มี , 2';
+                }else if(count($txttel) == 3){
+                    $respMessage = 'มี , 3';
+                }
+                
+                $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$txttel[1]."'");
+                error_log($sql);
+                $result = $connection->query($sql);
+                    if($result){
+                        $amount = $result->rowCount();
+                        
+                    }
         }
-        $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
         
-        $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
-        $dbname = 'dcoh0blsle9i6l'; 
-        $user = 'fljlfseofpkpfr';
-        $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
-        $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-        $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$txttel[1]."'");
-        error_log($sql);
-        $result = $connection->query($sql);
-            if($result){
-                $amount = $result->rowCount();
-            }
             
         }//if event
         
