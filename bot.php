@@ -34,32 +34,9 @@ if (!is_null($events['events'])) {
         $result = $connection->query($sql);
             if($result){
                 $amount = $result->rowCount();
-                if($amount==0){
-                    if(($txttel[0]=="mem")&&(is_numeric($txttel[2]))&&(strlen($txttel[2])>=8)){
-                        $params = array('name'=> $txttel[1], 'tel'=> $txttel[2],);
-                        $statement=$connection->prepare('INSERT INTO com4_6_phone (name,phone)VALUES(:name,:tel)');
-                        $statement->execute($params);
-                        $respMessage = "บันทึก ";    
-                    }else{
-                        $respMessage = "สั่งอะไรวะ ดูรูปแบบด้วย";
-                    } 
-                }
-                if(($txttel[0]=="เบอร์")&&($txttel[1]!="")){
-                  $sqlt=sprintf("SELECT tel FROM com4_6_phone WHERE name = '".$txttel[1]."'");
-                        error_log($sqlt);
-                        $res = $connection->query($sqlt);
-                        if (!$res) {
-                            $respMessage = "An error occurred.\n";
-                            exit;
-                        }else{
-                            $respMessage = "เบอร์ ";    
-                        }        
-                }    
-                
-                
-            }else{
-                $respMessage = $sql." ".$txttel[1];
+                $respMessage = "เบอร์ ";
             }
+            
         }//if event
         
         $httpClient = new CurlHTTPClient($channel_token);
