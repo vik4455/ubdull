@@ -22,6 +22,11 @@ if (!is_null($events['events'])) {
         $replyToken = $event['replyToken']; 
 		
         if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+        if (strpos($event['message']['text'], ',') !== false) {
+            $respMessage = 'มี ,';
+        }else{
+            $respMessage = 'ไม่มี ,';
+        }
         $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
         
         $host = 'ec2-54-163-255-181.compute-1.amazonaws.com';
@@ -34,7 +39,6 @@ if (!is_null($events['events'])) {
         $result = $connection->query($sql);
             if($result){
                 $amount = $result->rowCount();
-                $respMessage = "เบอร์ ";
             }
             
         }//if event
