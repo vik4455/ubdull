@@ -29,10 +29,20 @@ if (!is_null($events['events'])) {
             $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
             
             switch($event['message']['text']) {
-            case 'สวัสดี': $respMessage = 'สวัสดีครับ วันนี้เราขอแนะนำบริการของ Pin IT Solution';
+            case 'ที่อยู่': $respMessage = 'หจก. พิน ไอที โซลูชั่น 
+445/5 ถ.พายัพทิศ ต.ในเมือง 
+อ.เมือง จ.นครราชสีมา 30000';
+            break;
+            case 'โทร': $respMessage = 'หจก. พิน ไอที โซลูชั่น 
+ 090-9539419
+ 097-0045666';
+            break;
             case 'ราคา': $respMessage = 'ทำเว็บไซต์ เริ่มต้นที่ 5,000 บาท 
 เขียนโปรแกรมเริ่มที่ 8,500 บาท 
 Line Bot แบบผม 5,000 บาท ครับ';
+            break;
+            default : $respMessage = 'สวัสดีครับ วันนี้เราขอแนะนำบริการของ Pin IT Solution';
+            break;
             }
             
         }//if event
