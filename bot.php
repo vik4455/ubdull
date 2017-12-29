@@ -28,24 +28,12 @@ if (!is_null($events['events'])) {
             $pass = 'ac9fab1bfcbd77359fb3c7f0a30c571de1e94d13006d1be29aa39e5c978b9182'; 
             $connection=new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
             
-            if (strpos($event['message']['text'], ',') !== false) {
-                $txttel =explode(',', $event['message']['text']); //รับค่าตัวอักษร
-                if(count($txttel) == 2) {
-                    
-                    $respMessage = 'มี , 2 '.$txttel[0];
-                }else if(count($txttel) == 3){
-                    $respMessage = 'มี , 3'.$txttel[0];
-                }
-                
-                $sql=sprintf("SELECT * FROM com4_6_phone WHERE name = '".$txttel[1]."'");
-                error_log($sql);
-                $result = $connection->query($sql);
-                    if($result){
-                        $amount = $result->rowCount();
-                        
-                    }
-        }
-        
+            switch($event['message']['text']) {
+            case 'สวัสดี': $respMessage = 'สวัสดีครับ วันนี้เราขอแนะนำบริการของ Pin IT Solution';
+            case 'ราคา': $respMessage = 'ทำเว็บไซต์ เริ่มต้นที่ 5,000 บาท 
+เขียนโปรแกรมเริ่มที่ 8,500 บาท 
+Line Bot แบบผม 5,000 บาท ครับ';
+            }
             
         }//if event
         
