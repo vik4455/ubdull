@@ -20,7 +20,7 @@
             }
 
 /* change db to world db */
-            $conn->select_db("heroku_88c65b266d41d8b");
+            $conn->select_db("heroku_706484980a9f3c9");
 
             $conn->set_charset("utf8");
 ?>

@@ -21,62 +21,16 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
         include 'include/connect.php';
         $httpClient = new CurlHTTPClient($channel_token);
+        
         $bot=new LINEBot($httpClient, array('channelSecret'=> $channel_secret));
         $grp = $event['source']['groupId'];
         $user = $event['source']['userId'];
         $replyToken = $event['replyToken'];
-        
-        $ins = $conn->query('SELECT MAX(idmember) AS mm FROM member');
-                $mm = $ins->fetch_assoc();
-                $nid = str_pad($mm['mm']+1,3,"0",STR_PAD_LEFT);
 		$res = $bot->getProfile($user);
         if ($res->isSucceeded()) {
             $profile = $res->getJSONDecodedBody();
             $displayName = $profile['displayName'];
-        }
-        if ($event['type'] == 'message') {
-            switch($event['message']['type']) {
-                case 'text':
-                $ct = $event['message']['text'];
-                
-                $txt =explode(',', $ct);
-                $dt = date('Y-m-d');
-                
-                if(($txt[0]=="rg")&&(strlen($txt[1])==13)&&(is_numeric($txt[1]))){
-                $add_user = $conn->query('INSERT INTO 
-                            member (idmember,mem_name,mem_id,mem_card,mem_status,date_regis) 
-                            VALUES ("'.$nid.'","'.$displayName.'","'.$user.'","'.$txt[1].'","11","'.$dt.'")');
-                            if (!$add_user) {
-                                die('Add Member : '.$conn->error);
-                            }
-                $respMessage= "ลงทะเบียนสมาชิก ".$ni." ชื่อ : ".$displayName." ".$txt[1]." User ID : ".$user." วันที่ : ".$dt;
-                }else{
-                $respMessage= "format ลงทะเบียนคือ rg,(เลขบัตรประชาชน)";
-                }
-                break;
-                case 'image':
-                $fileID = $event['message']['id']; 
-                $response = $bot->getMessageContent($fileID); 
-                $fileName = md5(date('Y-m-d')).'.jpg'; 
-                if ($response->isSucceeded()) {         // Create file.         
-                    $file = fopen($fileName, 'w');         
-                    fwrite($file, $response->getRawBody());
-                    $upd_user = $conn->query('UPDATE member SET mem_cardimg = "'.$fileName.'"');
-                            if (!$upd_user) {
-                                die('Add Member : '.$conn->error);
-                            }
-                }else {
-                    error_log($response->getHTTPStatus() . ' ' . $response->getRawBody());
-                }
-                $respMessage='บันทึกรูปบัตรประชาชน';
-                break;
-                case 'location':
-                $respMessage='สถานที่';
-                break;
-                case 'audio':
-                $respMessage='เสียง';
-                break;
-            }   
+            $respMessage = $displayName;
         }
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
