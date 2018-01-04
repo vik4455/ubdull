@@ -26,11 +26,15 @@ if (!is_null($events['events'])) {
         $grp = $event['source']['groupId'];
         $user = $event['source']['userId'];
         $replyToken = $event['replyToken'];
+        
+        $manager = $conn->query('SELECT mng_id FROM manager');
+        $cm = $manager->num_rows;
+
 		$res = $bot->getProfile($user);
         if ($res->isSucceeded()) {
             $profile = $res->getJSONDecodedBody();
             $displayName = $profile['displayName'];
-            $respMessage = $displayName;
+            $respMessage = $cm;
         }
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
