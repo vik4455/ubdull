@@ -131,7 +131,24 @@ if (!is_null($events['events'])) {
                             }else{
                                 $new_code = $oldcode['max(party_code)']+1; 
                             }
-                        $respMessage= "เปิดวงแชร์ ".$new_code;  
+                        
+//                        $add_party = $conn->query('INSERT INTO party 
+//                            (party_code,party_mng,
+//                            party_grp,party_total,
+//                            party_beg,party_day,party_rule,party_update) 
+//                            VALUES 
+//                            ("'.$newcode.'","'.$user.'","'.
+//                            $grp.'","'.$txt[2].'","'.$grp.'")');
+//                            if (!$add_party) {
+//                                die('Add Party : '.$conn->error);
+//                            }
+                        $respMessage= "เปิดวงแชร์ :".$new_code.
+"-------------------".
+"เงินต้น : ".$txt[1].
+"ราย : ".$txt[2]." วัน".
+"ส่งมือละ : ".$txt[3].
+"เริ่มบิท : ".$txt[4].
+"(ไม่อั้นดอก)";  
                     }
                 }
                 
