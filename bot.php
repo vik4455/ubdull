@@ -38,8 +38,10 @@ if (!is_null($events['events'])) {
         }
         if ($event['type'] == 'message') {
             if($event['message']['type']=='text'){
+                $msg = $event['message']['text'];
                 $respMessage = "USER : ".$displayName." / ".$user." 
-Group : ".$grp;    
+Group : ".$grp."
+Massage : ".$msg;    
             }
         }
         
