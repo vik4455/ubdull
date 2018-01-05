@@ -63,12 +63,19 @@ if (!is_null($events['events'])) {
                                 die('Check Group : '.$conn->error);
                             }
                     $cg = $chkgrp->num_rows;
-                    
-                    $respMessage= "Group
------------------".
-$txt[1]." ".$cg;    
-
-                        
+                    if($cg==0){
+                        $add_grp = $conn->query('INSERT INTO 
+                            groups (group_name,group_id) 
+                            VALUES ("'.$txt[1].'","'.$grp.'")');
+                            if (!$add_grp) {
+                                die('Add Group : '.$conn->error);
+                            }
+                        $respMessage= "Save Group
+-----------------
+".$txt[1]."
+-----------------
+เรียบร้อยแล้ว";     
+                    }      
                 }
                 
                 if(($msg=="info")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
