@@ -112,8 +112,26 @@ if (!is_null($events['events'])) {
                 $co = $manager->fetch_assoc();
                 if($cc==1){
                 /* เปิดวงแชร์ */
-                    if($msg=="open"){
-                        $respMessage= "เปิดวงแชร์";  
+                    if($txt[0]=="open"){
+                        $m=date("m"); //รับเลขเดือน
+                        $y=date("Y");
+                        $yy=substr($y,2); 
+                        $old_code=$yy.$m;
+
+                            $rcode = $mysqli->query('SELECT max(party_code) 
+                                               FROM party
+                                               WHERE party_code LIKE "'.$old_code.'%"');
+                            if (!$rcode) {
+                                die('Select Party Code : ' . $mysqli->error());
+                            }
+                            $oldcode = $rcode->fetch_assoc();
+
+                            if($oldcode['max(party_code)']==0){
+                                $new_code = $old_code."001";
+                            }else{
+                                $new_code = $oldcode['max(party_code)']+1; 
+                            }
+                        $respMessage= "เปิดวงแชร์ ".$new_code;  
                     }
                 }
                 
