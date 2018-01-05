@@ -111,7 +111,6 @@ if (!is_null($events['events'])) {
                 $cc = $manager->num_rows;
                 $co = $manager->fetch_assoc();
                 if($cc==1){
-                /* เปิดวงแชร์ */
                     if($txt[0]=="open"){
                         $m=date("m"); //รับเลขเดือน
                         $y=date("Y");
@@ -132,16 +131,15 @@ if (!is_null($events['events'])) {
                                 $new_code = $oldcode['max(party_code)']+1; 
                             }
                         
-//                        $add_party = $conn->query('INSERT INTO party 
-//                            (party_code,party_mng,
-//                            party_grp,party_total,
-//                            party_beg,party_day,party_rule,party_update) 
-//                            VALUES 
-//                            ("'.$newcode.'","'.$user.'","'.
-//                            $grp.'","'.$txt[2].'","'.$grp.'")');
-//                            if (!$add_party) {
-//                                die('Add Party : '.$conn->error);
-//                            }
+                            $add_party = $conn->query('INSERT INTO party 
+                            (party_code,party_mng,party_grp,
+                            party_total,party_beg,party_day,party_rule,party_update) 
+                            VALUES 
+                            ("'.$newcode.'","'.$user.'","'.$grp.'","'.
+                            $txt[1].'","'.$txt[3].'","'.$txt[2].'","'.$txt[4].'","'.$dt.'")');
+                            if (!$add_party) {
+                                die('Add Party : '.$conn->error);
+                            }
                         $respMessage= "เปิดวงแชร์ :".$new_code.
 "\n\r-----------------  "
 ."\n\rเงินต้น : ".$txt[1]
@@ -149,7 +147,15 @@ if (!is_null($events['events'])) {
 ."\n\rส่งมือละ : ".$txt[3]
 ."\n\rเริ่มบิท : ".$txt[4]
 ."\n\r(ไม่อั้นดอก)";  
-                    }
+                    }/* เปิดวงแชร์ */
+                    if($txt[0]=="del"){
+                            $del_party = $conn->query('DELETE FROM party  
+                            WHERE party_code = "'.$txt[1].'"');
+                            if (!$del_party) {
+                                die('Delete Party : '.$conn->error);
+                            }
+                        $respMessage= "ลบวงแชร์ :".$txt[1]."เรียบร้อย";  
+                    }/* ลบวงแชร์ */
                 }
                 
                 
