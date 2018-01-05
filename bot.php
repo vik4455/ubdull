@@ -92,8 +92,25 @@ if (!is_null($events['events'])) {
                     $cm = $chkmng->num_rows;
                     $mn = $chkmng->fetch_assoc();
                     if($cm==1){
-                        
-                        $respMessage= "มีUserนี้ในระบบ";    
+                        $cmng = $conn->query('SELECT mng_group FROM manager 
+                        WHERE 
+                        (mng_id = "'.$mn['user_id'].'") AND (mng_group = "'.$grp.'")');
+                        if (!$cmng) {
+                                die('Check Manager : '.$conn->error);
+                            }
+                        $c = $cmng->num_rows;
+                        if($c==0){
+                        $respMessage= "Save Manager
+-----------------
+".$mn['user_id']."
+-----------------
+".$grp."
+-----------------
+เรียบร้อยแล้ว";     
+                        }else{
+                        $respMessage= "ได้รับการบันทึกเรียบร้อยแล้ว";    
+                        }
+                        //$respMessage= "มีUserนี้ในระบบ";    
                     }else{
                         $respMessage= "ไม่มีUserนี้ในระบบ";    
                     }      
