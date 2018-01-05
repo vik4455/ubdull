@@ -33,15 +33,24 @@ if (!is_null($events['events'])) {
 		$res = $bot->getProfile($user);
         if ($res->isSucceeded()) {
             $profile = $res->getJSONDecodedBody();
-            $displayName = $profile['displayName'];
-            
+            $displayName = $profile['displayName']; 
         }
         if ($event['type'] == 'message') {
             if($event['message']['type']=='text'){
                 $msg = $event['message']['text'];
-                $respMessage = "USER : ".$displayName." / ".$user." 
-Group : ".$grp."
-Massage : ".$msg;    
+                $txt =explode(',', $msg);
+                $dt = date('Y-m-d');
+                if(($txt[0]=="rg")&&(strlen($txt[1])==13)&&(is_numeric($txt[1]))){
+                    $add_user = $conn->query('INSERT INTO 
+                            user (user_name,user_id,user_citizen,add_date) 
+                            VALUES ("'.$displayName.'","'.$user.'","'.$txt[1].'","'.$dt.'")');
+                            if (!$add_user) {
+                                die('Add Member : '.$conn->error);
+                            }
+                    $respMessage= "ลงทะเบียนสมาชิก ชื่อ : ".$displayName."
+เลขบัตร : ".$txt[1]." เรียบร้อย";       
+                }
+                    
             }
         }
         
