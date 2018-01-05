@@ -63,11 +63,11 @@ if (!is_null($events['events'])) {
                                 die('Check Group : '.$conn->error);
                             }
                     $cg = $chkgrp->num_rows;
-                    if($cg==0){
+                    
                     $respMessage= "Group
 -----------------".
-$txt[1];    
-                    }
+$txt[1]." ".$cg;    
+
                         
                 }
                 
