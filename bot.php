@@ -82,7 +82,7 @@ if (!is_null($events['events'])) {
 -----------------
 มีในระบบแล้ว";    
                     }      
-                }
+                }/* เพิ่ม Group */
                 
                 if(($txt[0]=="mng")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
                     $chkmng = $conn->query('SELECT user_id,user_name FROM user WHERE user_name = "'.$txt[1].'"');
@@ -120,15 +120,15 @@ if (!is_null($events['events'])) {
                     }else{
                         $respMessage= "ไม่มีUserนี้ในระบบ";    
                     }      
-                }
+                }/* เพิ่ม ผู้จัดการ */
                 
-                if(($msg=="info")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
+                if($msg=="info"){
                     $respMessage= "สมาชิกที่เข้าร่วมใหม่ พิมพ์
 -----------------
 rg,เลขที่บัตรประชาชน
 -----------------
 เพื่อลงทะเบียนกับเราก่อน";    
-                }
+                }/* เรียกดูข้อมูล */
                 
                 if($msg=="id"){
                     $respMessage= $displayName." / ".$user;    
