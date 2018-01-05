@@ -118,7 +118,7 @@ if (!is_null($events['events'])) {
                         $yy=substr($y,2); 
                         $old_code=$yy.$m;
 
-                            $rcode = $mysqli->query('SELECT max(party_code) 
+                            $rcode = $conn->query('SELECT max(party_code) 
                                                FROM party
                                                WHERE party_code LIKE "'.$old_code.'%"');
                             if (!$rcode) {
