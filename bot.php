@@ -58,7 +58,7 @@ if (!is_null($events['events'])) {
                            
                 }
                 
-                if($msg=="info"){
+                if(($msg=="info")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
                     $respMessage= "สมาชิกที่เข้าร่วมใหม่ พิมพ์
 rg,เลขที่บัตรประชาชน
 -----------------
