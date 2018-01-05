@@ -84,6 +84,43 @@ if (!is_null($events['events'])) {
                     }      
                 }
                 
+                if(($txt[0]=="mng")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
+                    $chkmng = $conn->query('SELECT user_id,user_name FROM user WHERE user_name = "'.$txt[1].'"');
+                        if (!$chkmng) {
+                                die('Check User : '.$conn->error);
+                            }
+                    $cm = $chkmng->num_rows;
+                    $mn = $chkmng->fetch_assoc();
+                    if($cm==1){
+                        $cmng = $conn->query('SELECT mng_group FROM manager WHERE 
+                        (mng_id = "'.$mn['user_id'].'") AND (mng_group = "'.$grp.'")');
+                        if (!$cmng) {
+                                die('Check Manager : '.$conn->error);
+                            }
+                        $c = $cmng->num_rows;
+                        if($c==0){
+                            $add_mng = $conn->query('INSERT INTO 
+                            manager (mng_id,mng_name,mng_nname,group_id) 
+                            VALUES ("'.$mn['user_id'].'","'.$mn['user_name'].'","'.$txt[2].'","'.$grp.'")');
+                            if (!$add_mng) {
+                                die('Add Manager : '.$conn->error);
+                            }
+                        $respMessage= "Save Manager
+-----------------
+".$mn['user_id']."
+-----------------
+".$grp."
+-----------------
+เรียบร้อยแล้ว";     
+                        }else{
+                        $respMessage= "ได้รับการบันทึกเรียบร้อยแล้ว";    
+                        }
+                            
+                    }else{
+                        $respMessage= "ไม่มีUserนี้ในระบบ";    
+                    }      
+                }
+                
                 if(($msg=="info")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
                     $respMessage= "สมาชิกที่เข้าร่วมใหม่ พิมพ์
 -----------------
