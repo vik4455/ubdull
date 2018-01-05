@@ -58,7 +58,7 @@ if (!is_null($events['events'])) {
                            
                 }
                 if(($txt[0]=="grp")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
-                    $chkgrp = $conn->query('SELECT group_name FROM group WHERE group_id = "'.$grp.'"');
+                    $chkgrp = $conn->query('SELECT group_name FROM groups WHERE group_id = "'.$grp.'"');
                         if (!$chkgrp) {
                                 die('Check Group : '.$conn->error);
                             }
