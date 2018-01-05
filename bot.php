@@ -59,7 +59,10 @@ if (!is_null($events['events'])) {
                 }
                 
                 if($msg=="info"){
-                    $respMessage= "Group :".$grp;    
+                    $respMessage= "สมาชิกที่เข้าร่วมใหม่ พิมพ์
+rg,เลขที่บัตรประชาชน
+-----------------
+เพื่อลงทะเบียนกับเราก่อน";    
                 }
                     
             }
