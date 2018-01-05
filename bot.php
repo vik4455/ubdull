@@ -135,7 +135,7 @@ if (!is_null($events['events'])) {
                             (party_code,party_mng,party_grp,
                             party_total,party_beg,party_day,party_rule,party_update) 
                             VALUES 
-                            ("'.$newcode.'","'.$user.'","'.$grp.'","'.
+                            ("'.$new_code.'","'.$user.'","'.$grp.'","'.
                             $txt[1].'","'.$txt[3].'","'.$txt[2].'","'.$txt[4].'","'.$dt.'")');
                             if (!$add_party) {
                                 die('Add Party : '.$conn->error);
