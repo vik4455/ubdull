@@ -41,14 +41,21 @@ if (!is_null($events['events'])) {
                 $txt =explode(',', $msg);
                 $dt = date('Y-m-d');
                 if(($txt[0]=="rg")&&(strlen($txt[1])==13)&&(is_numeric($txt[1]))){
-                    $add_user = $conn->query('INSERT INTO 
+                    $chkuser = $conn->query('SELECT user_name FROM user WHERE user_id = "'.$user.'"');
+                    $cu = $chkuser->num_rows;
+                    if($cu==0){
+                        $add_user = $conn->query('INSERT INTO 
                             user (user_name,user_id,user_citizen,add_date) 
                             VALUES ("'.$displayName.'","'.$user.'","'.$txt[1].'","'.$dt.'")');
                             if (!$add_user) {
                                 die('Add Member : '.$conn->error);
                             }
                     $respMessage= "ลงทะเบียนสมาชิก ชื่อ : ".$displayName."
-เลขบัตร : ".$txt[1]." เรียบร้อย";       
+เลขบัตร : ".$txt[1]." เรียบร้อย";    
+                    }else{
+                    $respMessage= "สมาชิกมีในระบบเรียบร้อยแล้ว";    
+                    }
+                           
                 }
                     
             }
