@@ -58,11 +58,19 @@ if (!is_null($events['events'])) {
                            
                 }
                 if(($txt[0]=="grp")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
+                    $chkgrp = $conn->query('SELECT group_name FROM group WHERE group_id = "'.$grp.'"');
+                        if (!$chkgrp) {
+                                die('Check Group : '.$conn->error);
+                            }
+                    $cg = $chkgrp->num_rows;
+                    if($cg==0){
                     $respMessage= "Group
 -----------------".
-$txt[1]
-."-----------------";    
+$txt[1];    
+                    }
+                        
                 }
+                
                 if(($msg=="info")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
                     $respMessage= "สมาชิกที่เข้าร่วมใหม่ พิมพ์
 -----------------
