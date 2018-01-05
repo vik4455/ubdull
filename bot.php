@@ -57,6 +57,10 @@ if (!is_null($events['events'])) {
                     }
                            
                 }
+                
+                if($msg=="info"){
+                    $respMessage= "Group :".$grp;    
+                }
                     
             }
         }
