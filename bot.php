@@ -34,8 +34,13 @@ if (!is_null($events['events'])) {
         if ($res->isSucceeded()) {
             $profile = $res->getJSONDecodedBody();
             $displayName = $profile['displayName'];
-            $respMessage = "USER : ".$displayName." / ".$user." 
-Group : ".$grp;
+            
+        }
+        if ($event['type'] == 'message') {
+            if($event['message']['type']=='text'){
+                $respMessage = "USER : ".$displayName." / ".$user." 
+Group : ".$grp;    
+            }
         }
         
         $textMessageBuilder=new TextMessageBuilder($respMessage);
