@@ -93,7 +93,7 @@ rg,เลขที่บัตรประชาชน
                 }
                 
                 if($msg=="id"){
-                    $respMessage= $user;    
+                    $respMessage= $displayName." / ".$user;    
                 }    
             }
         }
