@@ -101,7 +101,7 @@ if (!is_null($events['events'])) {
                         $c = $cmng->num_rows;
                         if($c==0){
                         $add_mng = $conn->query('INSERT INTO 
-                            manager (mng_id,mng_name,mng_nname,group_id) 
+                            manager (mng_id,mng_name,mng_nname,mng_group) 
                             VALUES ("'.$mn['user_id'].'","'.$mn['user_name'].'","'.$txt[2].'","'.$grp.'")');
                             if (!$add_mng) {
                                 die('Add Manager : '.$conn->error);
