@@ -26,9 +26,6 @@ if (!is_null($events['events'])) {
         $grp = $event['source']['groupId'];
         $user = $event['source']['userId'];
         $replyToken = $event['replyToken'];
-        
-        $manager = $conn->query('SELECT mng_id FROM manager');
-        $cm = $manager->num_rows;
 
 		$res = $bot->getProfile($user);
         if ($res->isSucceeded()) {
@@ -40,23 +37,9 @@ if (!is_null($events['events'])) {
                 $msg = $event['message']['text'];
                 $txt =explode(',', $msg);
                 $dt = date('Y-m-d');
-                if(($txt[0]=="rg")&&(strlen($txt[1])==13)&&(is_numeric($txt[1]))){
-                    $chkuser = $conn->query('SELECT user_name FROM user WHERE user_id = "'.$user.'"');
-                    $cu = $chkuser->num_rows;
-                    if($cu==0){
-                        $add_user = $conn->query('INSERT INTO 
-                            user (user_name,user_id,user_citizen,add_date) 
-                            VALUES ("'.$displayName.'","'.$user.'","'.$txt[1].'","'.$dt.'")');
-                            if (!$add_user) {
-                                die('Add Member : '.$conn->error);
-                            }
-                    $respMessage= "ลงทะเบียนสมาชิก ชื่อ : ".$displayName."
-เลขบัตร : ".$txt[1]." เรียบร้อย";    
-                    }else{
-                    $respMessage= "สมาชิกมีในระบบเรียบร้อยแล้ว";    
-                    }
-                           
-                }
+                
+                /* ส่วนทำงาน Super Admin */
+                
                 if(($txt[0]=="grp")&&($user=="U21fc57cb014940d3a2e0f648dbf4aec3")){
                     $chkgrp = $conn->query('SELECT group_name FROM groups WHERE group_id = "'.$grp.'"');
                         if (!$chkgrp) {
@@ -122,6 +105,39 @@ if (!is_null($events['events'])) {
                     }      
                 }/* เพิ่ม ผู้จัดการ */
                 
+                /* ส่วนทำงานวงแชร์ */
+                $manager = $conn->query('SELECT mng_id FROM manager 
+                WHERE (mng_id = "'.$user.'") AND (mng_group = "'.$grp.'")');
+                $cc = $manager->num_rows;
+                $co = $manager->fetch_assoc();
+                if($cc==1){
+                /* เปิดวงแชร์ */
+                    if($msg=="open"){
+                        $respMessage= "เปิดวงแชร์";  
+                    }
+                }
+                
+                
+                /* ส่วนทำงานส่วนบุคคล */
+                
+                if(($txt[0]=="rg")&&(strlen($txt[1])==13)&&(is_numeric($txt[1]))){
+                    $chkuser = $conn->query('SELECT user_name FROM user WHERE user_id = "'.$user.'"');
+                    $cu = $chkuser->num_rows;
+                    if($cu==0){
+                        $add_user = $conn->query('INSERT INTO 
+                            user (user_name,user_id,user_citizen,add_date) 
+                            VALUES ("'.$displayName.'","'.$user.'","'.$txt[1].'","'.$dt.'")');
+                            if (!$add_user) {
+                                die('Add Member : '.$conn->error);
+                            }
+                    $respMessage= "ลงทะเบียนสมาชิก ชื่อ : ".$displayName."
+เลขบัตร : ".$txt[1]." เรียบร้อย";    
+                    }else{
+                    $respMessage= "สมาชิกมีในระบบเรียบร้อยแล้ว";    
+                    }
+                           
+                }/* ลงทะเบียนบัตรประชาชน */
+                
                 if($msg=="info"){
                     $respMessage= "สมาชิกที่เข้าร่วมใหม่ พิมพ์
 -----------------
@@ -132,7 +148,7 @@ rg,เลขที่บัตรประชาชน
                 
                 if($msg=="id"){
                     $respMessage= $displayName." / ".$user;    
-                }    
+                }/* เรียกดู ID ตัวเอง */    
             }
         }
         
